@@ -1,0 +1,33 @@
+// Sets -> Sets are one of the types of data structure present in STL.
+// Two types of sets :- Ordered Set and Unordered Set
+
+// Ordered Set :
+// 1. contains unique element.
+// 2. Implemented using balanced BST
+// 3. Elements are in sorted order.
+// 4. Random access not possible.
+
+// Unordered Set :
+// 1. contains unique element.
+// 2. Implemented using hashing
+// 3. Elements are not in sorted order.
+// 4. Random access not possible.
+
+// Multiset :-
+// 1. Duplicate element are present.
+// 2. Implemented using balanced BST
+// 3. Elements are in sorted order.
+// 4. Random access not possible. 
+
+// Time Complexities for ordered set:
+// Insertion --> O(logN)
+// Deletion --> O(logN)
+// lower/upper bound --> O(logN)
+
+// Time Complexities for unordered set:
+// Insertion --> O(1) in worst case O(N) bcoz it has hashing method
+// Deletion --> O(1) in worst case O(N) bcoz it has hashing method
+// lower/upper bound --> Not available
+
+
+
