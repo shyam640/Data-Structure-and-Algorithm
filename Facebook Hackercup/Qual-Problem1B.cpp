@@ -54,13 +54,28 @@ freopen("output.txt", "w", stdout);
 }
 
 int main(int argc, char const *argv[]) {
-clock_t begin = clock();
-file_i_o();
-// Write your code here....
+   clock_t begin = clock();
+   file_i_o();
+   // Write your code here....
+   int t;
+   cin>>t;
+   while(t--){
+      ll ans=-1;
+      string s;
+      cin>>s;
+      int k;
+      cin>>k;
+      vc A(k),B(k);
+      loop(i,0,k)
+         cin>>A[i]>>B[i];
+      
+      
+      
+   }
 
-#ifndef ONLINE_JUDGE 
-clock_t end = clock();
-cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms";
-#endif 
-return 0;
+   // #ifndef ONLINE_JUDGE 
+   // clock_t end = clock();
+   // cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms";
+   // #endif 
+   return 0;
 }
