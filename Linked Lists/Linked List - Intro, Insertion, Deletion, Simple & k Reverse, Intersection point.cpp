@@ -162,7 +162,7 @@ node* appendLastK_nodes(node* &head , int k){
 
 
 // Function to create intersecting linked list
-void createIntersectingLinkedList(node* &head,node* head0,int pos){
+void createIntersectingLinkedList(node* &head,node* &head0,int pos){
     node* temp = head;
     pos--;
     while(pos--){
