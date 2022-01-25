@@ -28,8 +28,41 @@ using namespace std;
 #define               ob                        pop_back
 #define               of                        pop_front
 #define               pq                        priority_queue
+#define               ump                       unordered_map
+
 
 #define               it(var)                   var.begin(),var.end()
 #define               loop(type,var,st,end)     for(type var=st;var<end;var++)
 #define               loop_rev(type,var,st,end) for(type var=st;var<end;var++)
 #define               mid(left,right)           (left+(right-left)/2)
+
+
+template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
+template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
+
+
+
+
+void file_input_output(){
+   ios_base::sync_with_stdio(0); 
+   cin.tie(0); 
+   cout.tie(0);
+   #ifndef ONLINE_JUDGE
+   freopen("input.txt", "r", stdin);
+   freopen("output.txt", "w", stdout);
+   #endif
+}
+
+int main(int argc, char const *argv[]) {
+   clock_t begin = clock();
+   file_input_output();       // Taking file input and displaying output in output.txt
+   // Write your code here....
+   
+
+
+   #ifndef ONLINE_JUDGE 
+   clock_t end = clock();
+   cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms";
+   #endif 
+   return 0;
+}
