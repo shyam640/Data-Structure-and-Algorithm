@@ -35,6 +35,7 @@ using namespace std;
 #define               loop(type,var,st,end)     for(type var=st;var<end;var++)
 #define               loop_rev(type,var,st,end) for(type var=st;var<end;var++)
 #define               mid(left,right)           (left+(right-left)/2)
+#define               print_arr(arr,type,st,end) for(type var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
 
 
 template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}

@@ -1,0 +1,10 @@
+Choose Method
+1. Recursion O(N)
+2. Iteration O(N)
+3. Dynamic Programming O(N)
+4. Using Formula O(1)
+5. Using Matrix Power O(logN)
+Enter N-th number : Enter Choice : N-th fibonacci number using Matrix Power is : 5
+
+
+Executed In: 0 ms
