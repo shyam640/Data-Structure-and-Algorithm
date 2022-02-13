@@ -69,16 +69,21 @@ void iterativeMethod(int n) {
    cout<<"N-th fibonacci number using Iterative Method is : " << fib[fib.size()-1] << endl;
 }
 
-void dynamicProgrammingMethod(int n) {
-   // Method 1 : Simple DP
-   vector<int> dp(n+2,-1);
+void dynamicProgrammingMethod(int n,vector<int>& dp) {
+   // Method 1 : Simple DP (Tabulation -> Bottom-Up approach)
    dp[0] = 0;
    dp[1] = 1;
    for(int i=2;i<=n;i++)
       dp[i] = dp[i-1]+dp[i-2];
    cout<<"N-th fibonacci number DP Method is : " << dp[n] << endl;
 
-   // Method 2 : Space Optimizing
+   // Method 2 : Simple DP (Memoization -> Top-Down approach)
+   if(n<=1) return n;
+   if(dp[n]!=-1)  return dp[n];
+   dp[n] = dynamicProgrammingMethod(n-1,dp) + dynamicProgrammingMethod(n-1,dp);
+   cout<<"N-th fibonacci number DP Method is : " << dp[n] << endl;
+
+   // Method 3 : Space Optimizing
    int a=0,b=1,c;
    if(n==0)
       cout<<"N-th fibonacci number DP Optimized Method is : " << a << endl;
@@ -155,7 +160,8 @@ int main(int argc, char const *argv[]) {
                   break;
                }
       case 3 : {
-                  dynamicProgrammingMethod(n);
+                  vector<int> dp(n+2,-1);
+                  dynamicProgrammingMethod(n,dp);
                   break;
                }
       case 4 : {
