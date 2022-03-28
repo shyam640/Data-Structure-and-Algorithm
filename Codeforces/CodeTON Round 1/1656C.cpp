@@ -46,6 +46,19 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 int main() {
    fast_io
    // Write your code here....
-   
+   lli t;
+   cin>>t;
+   while(t--){
+      lli n;
+      cin>>n;
+      vlli arr(n);
+      loop(lli,i,0,n){
+         cin>>arr[i];
+      }
+      loop(lli,i,0,n){
+         if(arr[i]%2 or arr[i]%3)
+      }
+   }
+
    return 0;
 }

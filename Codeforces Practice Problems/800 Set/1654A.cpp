@@ -40,12 +40,25 @@ using namespace std;
 
 template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
 template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
-#define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-
-int main() {
-   fast_io
-   // Write your code here....
-   
+int main(int argc, char const *argv[]) {
+   lli t;
+   cin>>t;
+   while(t--){
+      lli n;
+      cin>>n;
+      lli g1=-1e8,g2=-1e8;
+      for(int i=0;i<n;i++){
+         lli a;
+         cin>>a;
+         if(a>=g1){
+            g2 = g1;
+            g1 = a;
+         }else if(a>=g2){
+            g2 = a;
+         }
+      }
+      cout<<g1+g2<<"\n";
+   }
    return 0;
 }

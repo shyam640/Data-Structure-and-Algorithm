@@ -46,6 +46,23 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 int main() {
    fast_io
    // Write your code here....
-   
+   lli t;
+   cin>>t;
+   while(t--){
+      lli n,B,x,y;
+      cin>>n>>B>>x>>y;
+      vlli arr(n+1);
+      arr[0] = 0;
+      lli sum = 0;
+      for(int i=1;i<=n;i++){
+         if(arr[i-1]+x <= B)
+            arr[i] = arr[i-1]+x;
+         else
+            arr[i] = arr[i-1]-y;
+         sum += arr[i];
+      }
+      cout<<sum<<endl;
+   }
+
    return 0;
 }

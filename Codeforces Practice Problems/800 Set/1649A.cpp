@@ -43,9 +43,26 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
 
+void recSol(vector<lli>& arr,lli idx,lli lastIdx){
+   if(idx==arr.size())
+      return idx-lastIdx;
+      if(arr[idx]==arr[idx-1])
+         adj = recSol(arr,idx+1);
+}
+
 int main() {
    fast_io
    // Write your code here....
-   
+   lli t;
+   cin>>t;
+   while(t--){
+      lli n;
+      cin>>n;
+      vector<lli> arr(n);
+      for(lli i=0;i<n;i++)
+         cin>>arr[i];
+      recSol(arr,0);
+   }
+
    return 0;
 }

@@ -33,7 +33,7 @@ using namespace std;
 
 #define               it(var)                   var.begin(),var.end()
 #define               loop(type,var,st,end)     for(type var=st;var<end;var++)
-#define               loop_rev(type,var,st,end) for(type var=st;var<end;var++)
+#define               loop_rev(type,var,st,end) for(type var=end;var>=0;var--)
 #define               mid(left,right)           (left+(right-left)/2)
 #define               print_arr(arr,type,st,end) for(type var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
 
@@ -46,6 +46,21 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 int main() {
    fast_io
    // Write your code here....
-   
+   lli t;
+   cin>>t;
+   while(t--){
+      lli n;
+      cin>>n;
+      vlli arr;
+      for(int i=0;i<n;i++){
+         if(i%2==0)
+            arr.pb(1);
+         else
+            arr.pb(3);
+      }
+      cout<<"YES"<<endl;
+      print_arr(arr,lli,0,n-1);
+   }
+
    return 0;
 }
