@@ -53,23 +53,14 @@ int main() {
       cin>>n;
       string s;
       cin>>s;
-      lli adj=0,mc=0,fc=0;
+      lli ans =0;
       for(lli i=0;i<s.length()-1;i++){
          if(s[i]=='0' and s[i+1]=='0')
-            adj+=2;
-         if(s[i]=='0')
-            mc++;
-         else
-            fc++;
+            ans+=2;
+         else if(s[i]=='0' and s[i+2]=='0' and i<s.length()-2)
+            ans+=1;
       }
-      if(adj==0){
-         if(mc==0)
-            cout<<"0"<<endl;
-         else
-            cout<<mc-fc<<endl;
-      }else{
-         cout<<adj<<endl;
-      }
+      cout<<ans<<endl;
    }
 
    return 0;
