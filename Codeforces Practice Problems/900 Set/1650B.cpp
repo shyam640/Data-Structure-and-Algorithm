@@ -12,6 +12,7 @@ using namespace std;
 #define               sig                       signed
 #define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>
@@ -41,6 +42,7 @@ using namespace std;
 template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
 template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const ld pi = atan2(0, -1);
 
 
 int main() {
@@ -49,12 +51,20 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vector<lli> arr(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr[i];
-      
+      lli l,r,a;
+      cin>>l>>r>>a;
+      // Brute Force Approach
+      // for(lli i=l;i<=r;i++){
+      //    lli temp = floor(i/a) + i%a;
+      //    ans = max(ans,temp);
+      // }
+
+      // Optimised Method
+      if(l/a == r/a){
+         cout<<(r/a) + r%a <<endl;
+      }else{
+         cout<<max(r/a + r%a , r/a-1 + a-1)<<endl;
+      }
    }
 
    return 0;

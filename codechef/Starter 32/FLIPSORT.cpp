@@ -12,6 +12,7 @@ using namespace std;
 #define               sig                       signed
 #define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>
@@ -41,6 +42,7 @@ using namespace std;
 template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
 template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const long double pi = atan2(0, -1);
 
 
 int main() {
@@ -51,10 +53,28 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vector<lli> arr(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr[i];
-      
+      string s;
+      cin>>s;
+      lli count=0;
+      vector<pair<lli,lli>> pos_and_len;
+      lli len = s.length();
+      for(lli i=0;i<s.length();i++){
+         if(s[i]=='1'){
+            pos_and_len.push_back(make_pair(i+1,len));
+            count++;
+            for(lli j=i;j<i+len;j++){
+               if(s[j] == '0')
+                  s[j] = '1';
+               else
+                  s[j] = '0';
+            }
+         }
+         len--;
+      }
+      cout<<count<<endl;
+      for(lli i=0;i<pos_and_len.size();i++){
+         cout<<pos_and_len[i].first <<" "<<pos_and_len[i].second<<endl;
+      }
    }
 
    return 0;

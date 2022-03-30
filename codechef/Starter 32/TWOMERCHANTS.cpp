@@ -12,6 +12,7 @@ using namespace std;
 #define               sig                       signed
 #define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>
@@ -41,6 +42,7 @@ using namespace std;
 template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
 template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const long double pi = atan2(0, -1);
 
 
 int main() {
@@ -49,12 +51,30 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vector<lli> arr(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr[i];
-      
+      lli n,m,c;
+      cin>>n>>m>>c;
+      lli aDiff=0,bDiff=0,aMax=INT_MIN,bMax = INT_MIN;
+      for(lli i=0;i<n;i++){
+         lli a;
+         cin>>a;
+         if(a<=c)
+            aDiff++;
+         aMax = max(aMax,a);
+      }
+      for(lli i=0;i<m;i++){
+         lli a;
+         cin>>a;
+         if(a<=c)
+            bDiff++;
+         bMax = max(bMax,a);
+      }
+      if(aMax-bDiff<=c and bMax+bDiff-aDiff<=c)
+         cout<<"YES"<<endl;
+      else if(bMax-aDiff<=c and aMax+aDiff-bDiff<=c)
+         cout<<"YES"<<endl;
+      else
+         cout<<"NO"<<endl;
+
    }
 
    return 0;

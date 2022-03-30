@@ -12,6 +12,7 @@ using namespace std;
 #define               sig                       signed
 #define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>

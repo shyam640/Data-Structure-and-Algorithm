@@ -12,6 +12,7 @@ using namespace std;
 #define               sig                       signed
 #define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>
@@ -41,7 +42,16 @@ using namespace std;
 template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
 template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const long double pi = atan2(0, -1);
 
+
+lli getPos(vector<lli>& arr,lli val){
+   for(lli i=0;i<arr.size();i++){
+      if(arr[i]==val)
+         return i;
+   }
+   return -1;
+}
 
 int main() {
    fast_io
@@ -49,13 +59,16 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
+      lli n,k;
+      cin>>n>>k;
       vector<lli> arr(n);
       for(lli i=0;i<n;i++)
          cin>>arr[i];
-      
+      sort(arr.begin(),arr.end());
+      if(k<n-1)
+         cout<<arr[k]<<endl;
+      else
+         cout<<arr[n-1]<<endl;
    }
-
    return 0;
 }

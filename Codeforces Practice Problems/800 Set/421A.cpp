@@ -12,6 +12,7 @@ using namespace std;
 #define               sig                       signed
 #define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>
@@ -46,16 +47,7 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 int main() {
    fast_io
    // Write your code here....
-   lli t;
-   cin>>t;
-   while(t--){
-      lli n;
-      cin>>n;
-      vector<lli> arr(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr[i];
-      
-   }
+
 
    return 0;
 }
