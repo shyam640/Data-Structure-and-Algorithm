@@ -53,28 +53,25 @@ int main() {
    while(t--){
       lli n,m,c;
       cin>>n>>m>>c;
-      lli aDiff=0,bDiff=0,aMax=INT_MIN,bMax = INT_MIN;
+      lli aSmall=0,bSmall=0,aMax=INT_MIN,bMax=INT_MIN;
       for(lli i=0;i<n;i++){
          lli a;
          cin>>a;
          if(a<=c)
-            aDiff++;
-         aMax = max(aMax,a);
+            aSmall++;
+         aMax = aMax>=a ? aMax : a;
       }
       for(lli i=0;i<m;i++){
          lli a;
          cin>>a;
          if(a<=c)
-            bDiff++;
-         bMax = max(bMax,a);
+            bSmall++;
+         bMax = bMax>=a ? bMax : a;
       }
-      if(aMax-bDiff<=c and bMax+bDiff-aDiff<=c)
-         cout<<"YES"<<endl;
-      else if(bMax-aDiff<=c and aMax+aDiff-bDiff<=c)
+      if(aMax-c <= aSmall and bMax-c<=bSmall)
          cout<<"YES"<<endl;
       else
          cout<<"NO"<<endl;
-
    }
 
    return 0;

@@ -53,37 +53,51 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vlli arr1(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr1[i];
-      vlli arr2(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr2[i];
-      vector<vlli> plan(n);
-      for(lli i=0;i<n;i++){
-         plan[arr2[i]].push_back(arr1[i]);
+      vlli arr(n);
+      for(auto &val : arr)
+         cin>>val;
+      // print_arr(arr,lli,0,n-1);
+
+      // Brute Force Approach
+      // lli prev_pos=-1;
+      // while(1){
+      //    lli maxVal = *max_element(arr.begin(),arr.end());
+      //    if(maxVal<=0){
+      //       cout<<"YES"<<endl;
+      //       break;
+      //    }
+      //    lli i=0;
+      //    for(i=0;i<n;i++){
+      //       if(maxVal == arr[i] and i!=prev_pos){
+      //          arr[i]--;
+      //          prev_pos=i;
+      //          break;
+      //       }
+      //    }
+      //    if(i==n){
+      //       cout<<"NO"<<endl;
+      //       break;
+      //    }
+      // }
+
+      // Math Approach
+      lli g1=INT_MIN,g2=INT_MIN;
+      for(lli i=0;i<arr.size();i++){
+         if(arr[i]>=g1){
+            g2 = g1;
+            g1 = arr[i];
+         }else if(arr[i]>=g2){
+            g2 = arr[i];
+         }
       }
-      vector<double> dp(n+1,0);
-      // lli sum=0;
-      multiset<lli> s;
-      for(lli i=1;i<n+1;i++){
-         for(auto &j : plan[i-1])
-            s.insert(j);
-         // for(auto it=s.begin();it!=s.end();it++)
-         //    cout<<*it<<" ";
-         // cout<<endl;
-         if(s.size()){
-            dp[i] = dp[i-1];
-            auto it = s.end();
-            it--;
-            dp[i]+=*it;
-            s.erase(it);
-         }else
-            break;
-      }
-      // print_arr(dp,double,0,n+1);
-      double ans = *max_element(dp.begin(),dp.end());
-         cout<<fixed<<setprecision(6)<<ans<<endl;
+      if(arr.size()==1 and arr[0]>1)
+         cout<<"NO"<<endl;
+      else if(arr.size()==1 and arr[0]<=1)
+         cout<<"YES"<<endl;
+      else if((g1-g2)>1)
+         cout<<"NO"<<endl;
+      else
+         cout<<"YES"<<endl;
    }
 
    return 0;

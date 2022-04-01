@@ -51,39 +51,9 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli arr1(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr1[i];
-      vlli arr2(n);
-      for(lli i=0;i<n;i++)
-         cin>>arr2[i];
-      vector<vlli> plan(n);
-      for(lli i=0;i<n;i++){
-         plan[arr2[i]].push_back(arr1[i]);
-      }
-      vector<double> dp(n+1,0);
-      // lli sum=0;
-      multiset<lli> s;
-      for(lli i=1;i<n+1;i++){
-         for(auto &j : plan[i-1])
-            s.insert(j);
-         // for(auto it=s.begin();it!=s.end();it++)
-         //    cout<<*it<<" ";
-         // cout<<endl;
-         if(s.size()){
-            dp[i] = dp[i-1];
-            auto it = s.end();
-            it--;
-            dp[i]+=*it;
-            s.erase(it);
-         }else
-            break;
-      }
-      // print_arr(dp,double,0,n+1);
-      double ans = *max_element(dp.begin(),dp.end());
-         cout<<fixed<<setprecision(6)<<ans<<endl;
+      string s;
+      cin>>s;
+      if(s.lengt)
    }
 
    return 0;
