@@ -44,6 +44,11 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 const long double pi = atan2(0, -1);
 
+bool solve(vlli &A, vlli &B , lli c){
+   lli bNeeded = max(A[A.size()-1]-c,0ll);   //0ll -> Zero Long Long
+   return (bNeeded<B.size() and (bNeeded==0 or B[bNeeded-1]<=c) and ((B[B.size()-1]+bNeeded-A.size()) <= c));
+}
+
 
 int main() {
    fast_io
@@ -53,22 +58,12 @@ int main() {
    while(t--){
       lli n,m,c;
       cin>>n>>m>>c;
-      lli aSmall=0,bSmall=0,aMax=INT_MIN,bMax=INT_MIN;
-      for(lli i=0;i<n;i++){
-         lli a;
-         cin>>a;
-         if(a<=c)
-            aSmall++;
-         aMax = aMax>=a ? aMax : a;
-      }
-      for(lli i=0;i<m;i++){
-         lli a;
-         cin>>a;
-         if(a<=c)
-            bSmall++;
-         bMax = bMax>=a ? bMax : a;
-      }
-      if(aMax-c <= aSmall and bMax-c<=bSmall)
+      vlli A(n) , B(m);
+      for(lli i=0;i<n;i++)
+         cin>>A[i];
+      for(auto &val : B)
+         cin>>val;
+      if(solve(A,B,c) or solve(B,A,c))
          cout<<"YES"<<endl;
       else
          cout<<"NO"<<endl;

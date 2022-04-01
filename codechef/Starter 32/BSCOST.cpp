@@ -51,32 +51,22 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli arr(n);
-      lli prod = 1;
-      for(lli i=0;i<n;i++){
-         cin>>arr[i];
-         prod*=arr[i];
+      lli n,x,y;
+      cin>>n>>x>>y;
+      string s;
+      cin>>s;
+      lli zeroCount=0,oneCount=0;
+      for(lli i=0;i<s.length();i++){
+         if(s[i]=='0')
+            zeroCount++;
+         else
+            oneCount++;
       }
-      lli st=0,end=n-1,mxProd=prod;
-      lli i=0,j=n-1;
-      if(mxProd<=0){
-         while(st<=end){
-            if(prod/arr[end]>=prod/arr[st]){
-               prod/=arr[end];
-               end--;
-            }else{
-               prod/=arr[st];
-               st++;
-            }
-            if(prod>mxProd){
-               i=st;
-               j=end;
-            }
-         }
+      if(zeroCount==0 or oneCount==0){
+         cout<<"0"<<endl;
+      }else{
+         cout<<min(x,y)<<endl;
       }
-      cout<<i<<" "<<n-j<<endl;
    }
 
    return 0;
