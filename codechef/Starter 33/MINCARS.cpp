@@ -51,12 +51,15 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
+      lli n;
+      cin>>n;
+      if(n<=4)
+         cout<<"1"<<endl;
+      else if(n%4==0)
+         cout<<n/4<<endl;
       else
-         cout<<"NO"<<endl;
+         cout<<n/4 + 1<<endl;
    }
+
    return 0;
 }

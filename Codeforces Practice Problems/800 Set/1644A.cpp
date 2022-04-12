@@ -51,12 +51,42 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
+      string s;
+      cin>>s;
+      int rKey=0,gKey=0,bKey=0;
+      bool flag=0;
+      for(int i=0;i<s.length();i++){
+         if(s[i]=='r')
+            rKey++;
+         else if(s[i]=='g')
+            gKey++;
+         else if(s[i]=='b')
+            bKey++;
+         else if(s[i]=='R'){
+            if(rKey==0){
+               flag=1;
+               break;
+            }
+            rKey--;
+         }else if(s[i]=='G'){
+            if(gKey==0){
+               flag=1;
+               break;
+            }
+            gKey--;
+         }else if(s[i]=='B'){
+            if(bKey==0){
+               flag=1;
+               break;
+            }
+            bKey--;
+         }
+      }
+      if(flag)
          cout<<"NO"<<endl;
+      else
+         cout<<"YES"<<endl;
    }
+
    return 0;
 }

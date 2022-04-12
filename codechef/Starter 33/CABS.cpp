@@ -51,12 +51,14 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      lli x,y;
+      cin>>x>>y;
+      if(x==y)
+         cout<<"ANY"<<endl;
+      else{
+         cout<<((x>y)?"SECOND":"FIRST")<<endl;
+      }
    }
+
    return 0;
 }

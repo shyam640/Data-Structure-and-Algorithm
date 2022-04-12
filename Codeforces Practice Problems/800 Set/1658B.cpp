@@ -44,6 +44,14 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 const long double pi = atan2(0, -1);
 
+lli fact(lli n){
+   lli f = 1;
+   while(n){
+      f = (f*n)%998244353;
+      n--;
+   }
+   return f;
+}
 
 int main() {
    fast_io
@@ -51,12 +59,13 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
+      lli n;
+      cin>>n;
+      if(n%2==0)
+         cout<<(fact(n/2)*fact(n/2))%998244353<<endl;
       else
-         cout<<"NO"<<endl;
+         cout<<"0"<<endl;
    }
+
    return 0;
 }

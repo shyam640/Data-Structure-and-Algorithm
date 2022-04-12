@@ -51,12 +51,21 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
+      lli n;
+      cin>>n;
+      int type = 1;
+      lli sum=0;
+      if(n%3==1)
+         type = 1;
       else
-         cout<<"NO"<<endl;
+         type = 2;
+      while(sum!=n){
+         cout<<type;
+         sum+=type;
+         type = 3-type;
+      }
+      cout<<endl;
    }
+
    return 0;
 }

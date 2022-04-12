@@ -51,12 +51,21 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
+      lli n;
+      cin>>n;
+      vlli arr(n);
+      for(lli i=0;i<n;i++)
+         cin>>arr[i];
+      sort(arr.begin(),arr.end());
+      if(arr.size()<=2)
          cout<<"NO"<<endl;
+      else{
+         if(arr[0]+arr[1]<arr[n-1])
+            cout<<"YES"<<endl;
+         else
+            cout<<"NO"<<endl;
+      }
    }
+
    return 0;
 }

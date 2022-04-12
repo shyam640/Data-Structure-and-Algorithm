@@ -39,8 +39,8 @@ using namespace std;
 #define               print_arr(arr,type,st,end) for(type var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
 
 
-template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
-template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
+template <typename T> T _gcd(T a, T b){if(a%b) return _gcd(b,a%b);return b;}
+template <typename T> T _lcm(T a, T b){return (a*(b/_gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 const long double pi = atan2(0, -1);
 
@@ -51,12 +51,21 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      lli a,b;
+      cin>>a>>b;
+      if(a%2==0){
+         if(a+2<=b)
+            cout<<a<<" "<<a+2<<endl;
+         else
+            cout<<"-1"<<endl;
+      }else if(a%3==0){
+         if(a+3<=b)
+            cout<<a<<" "<<a+3<<endl;
+         else
+            cout<<"-1"<<endl;
+      }else{
+         cout<<a+1<<" "<<a+3<<endl;
+      }
    }
    return 0;
 }

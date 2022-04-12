@@ -50,13 +50,24 @@ int main() {
    // Write your code here....
    lli t;
    cin>>t;
+   lli test=1;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      lli n;
+      cin>>n;
+      vlli arr(n);
+      for(lli i=0;i<n;i++)
+         cin>>arr[i];
+      sort(arr.begin(),arr.end());
+      lli ans=0,temp=1;
+      for(lli i=1;i<=n;i++){
+         if(arr[i-1]>=temp){
+            temp++;
+            ans++;
+         }
+      }
+      cout<<"Case #"<<test<<": "<<ans<<endl;
+      test++;
    }
+
    return 0;
 }

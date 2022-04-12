@@ -51,12 +51,26 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
+      lli n;
+      cin>>n;
+      string s;
+      cin>>s;
+      bool flag=0,oneC=0;
+      for(lli i=0;i<s.length()-1;i++){
+         if(s[i]==s[i+1] and s[i]=='1'){
+            flag=1;
+            break;
+         }
+         if(s[i]=='1')
+            oneC++;
+      }
+      if(flag)
+         cout<<"2"<<endl;
+      else if(oneC>0 or s[s.length()-1]=='1')
+         cout<<"1"<<endl;
       else
-         cout<<"NO"<<endl;
+         cout<<"0"<<endl;
    }
+
    return 0;
 }

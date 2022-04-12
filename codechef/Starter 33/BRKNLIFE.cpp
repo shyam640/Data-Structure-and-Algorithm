@@ -45,18 +45,51 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 const long double pi = atan2(0, -1);
 
 
+bool checkSeq(string s,string a){
+   lli st=0;
+   for(lli i=0;i<s.length() and st<a.length();i++){
+         if(s[i]==a[st])
+            st++;
+      }
+      // cout<<st<<endl;
+      if(st==a.length())
+         return true;
+      return false;
+}
+
 int main() {
    fast_io
    // Write your code here....
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      lli n,m;
+      cin>>n>>m;
+      string s,a;
+      cin>>s>>a;
+      bool flag=0;
+      string ans="";
+      char choice[] = {'a','b','c','d','e'};
+      for(int i=0;i<5;i++){
+         lli st=0;
+         ans="";
+         for(lli j=0;j<s.length();j++){
+            if(s[j]=='?')
+               ans+=choice[i];
+            else
+               ans+=s[j];
+            if(ans[ans.length()-1]==a[st] and st<a.length())
+               st++;
+         }
+         if(st!=a.length()){
+            cout<<ans<<endl;
+            flag=1;
+            break;
+         }
+      }
+      if(!flag)
+         cout<<"-1"<<endl;
    }
+
    return 0;
 }

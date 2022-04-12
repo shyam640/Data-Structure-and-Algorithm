@@ -54,7 +54,26 @@ int main() {
       vector<lli> arr(n);
       for(lli i=0;i<n;i++)
          cin>>arr[i];
-      
+      lli st=0,last=n-1;
+      for(lli i=0;i<n;i++){
+         if(arr[i]==0){
+            st=i;
+            break;
+         }
+      }
+      for(lli i=n-1;i>=0;i--){
+         if(arr[i]==0){
+            last=i;
+            break;
+         }
+      }
+      if(st==0)
+         cout<<"0"<<endl;
+      else{
+         st--;
+         last++;
+         cout<<last-st<<endl;
+      }
    }
 
    return 0;

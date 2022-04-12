@@ -51,12 +51,40 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
+      lli n;
+      cin>>n;
+      lli even=0,odd=0;
+      for(lli i=0;i<n;i++){
+         lli a;
+         cin>>a;
+         if(a%2==0)
+            even++;
+         else
+            odd++;
+      }
+      if(odd%2==0)
+         cout<<min(even,odd/2)<<endl;
       else
-         cout<<"NO"<<endl;
+         cout<<even<<endl;
+      // if(!even or !odd)
+      //    cout<<"0"<<endl;
+      // else{
+      //    if(even>odd){
+      //       if(odd%2==0)
+      //          cout<<odd/2<<endl;
+      //       else
+      //          cout<<even<<endl;
+      //    }else if(even==odd){
+      //       if(odd%2==0)
+      //          cout<<odd/2<<endl;
+      //       else
+      //          cout<<even<<endl;
+      //    }else{
+      //       cout<<even<<endl;
+      //    }
+
+      // }
    }
+
    return 0;
 }

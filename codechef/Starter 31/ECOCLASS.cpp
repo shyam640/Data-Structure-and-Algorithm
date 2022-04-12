@@ -51,12 +51,22 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      lli n;
+      cin>>n;
+      vlli a(n) , b(n);
+      for(lli i=0;i<n;i++){
+          cin>>a[i];
+      }
+      for(lli i=0;i<n;i++){
+          cin>>b[i];
+      }
+      lli ans=0;
+      for(lli i=0;i<n;i++){
+          if(a[i]==b[i])
+            ans++;
+      }
+      cout<<ans<<endl;
+      
    }
    return 0;
 }

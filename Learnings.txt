@@ -7,4 +7,15 @@
          }
 
 
-2. 
+2. By the triangle inequality, for all real numbers x,y,z, we have:
+            |x−y|+|y−z|≥|x−z|
+   with equality if and only if min(x,z)≤y≤max(x,z).
+
+   Now, take indices i and j such that ai and aj are the maximum and minimum values of the array, 
+   respectively. Then, for each index k, we have ai≥ak≥aj, meaning that 
+            |ai−ak|+|ak−aj|=ai−ak+ak−aj=ai−aj=|ai−aj|, 
+   as we desired.
+
+
+
+3. 

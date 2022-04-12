@@ -51,12 +51,26 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      lli n;
+      cin>>n;
+      vlli arr(n);
+      for(lli i=0;i<n;i++)
+         cin>>arr[i];
+      lli ans=0;
+      for(lli i=1;i+1<n;i++){
+         if(arr[i]>arr[i-1] and arr[i]>arr[i+1]){
+            if(i+2<n)
+               arr[i+1] = max(arr[i],arr[i+2]);
+            else
+               arr[i+1] = arr[i];
+            ans++;
+         }
+      }
+      cout<<ans<<endl;
+      for(lli i=0;i<n;i++)
+         cout<<arr[i]<<" ";
+      cout<<endl;
    }
+
    return 0;
 }

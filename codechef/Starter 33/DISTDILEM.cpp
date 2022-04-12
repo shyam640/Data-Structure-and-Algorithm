@@ -51,12 +51,25 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
+      lli n;
+      cin>>n;
+      lli sum=0;
+      for(lli i=0;i<n;i++){
+         lli a;
+         cin>>a;
+         sum+=a;
+      }
+      lli red=1,ans=0;
+      while(sum>0){
+         sum-=red;
+         red++;
+         ans++;
+      }
+      if(sum<0)
+         cout<<ans-1<<endl;
       else
-         cout<<"NO"<<endl;
+         cout<<ans<<endl;
    }
+
    return 0;
 }

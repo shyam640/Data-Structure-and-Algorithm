@@ -50,13 +50,44 @@ int main() {
    // Write your code here....
    lli t;
    cin>>t;
+   lli test=1;
    while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
+      vector<vector<lli>> colors(3,vector<lli>(4));
+      for(lli i=0;i<3;i++){
+         for(lli j=0;j<4;j++)
+            cin>>colors[i][j];
+      }
+      lli cyan = min(colors[0][0],min(colors[1][0],colors[2][0]));
+      lli magenta = min(colors[0][1],min(colors[1][1],colors[2][1]));
+      lli yellow = min(colors[0][2],min(colors[1][2],colors[2][2]));
+      lli black = min(colors[0][3],min(colors[1][3],colors[2][3]));
+      lli total = cyan+magenta+yellow+black;
+      vector<lli> availableColors = {cyan,magenta,yellow,black};
+      // cout<<cyan<<" "<<magenta<<" "<<yellow<<" "<<black<<endl;
+      cout<<"Case #"<<test<<": ";
+      if(total==1000000){
+         cout<<cyan<<" "<<magenta<<" "<<yellow<<" "<<black<<endl;
+      }else if(total>1000000){
+         lli sum=0,i=0;
+         while(i<4){
+            sum+=availableColors[i];
+            // cout<<"sum=" <<sum<<endl;
+            if(sum>1000000){
+               break;
+            }else{
+               cout<<availableColors[i]<<" ";
+            }
+            i++;
+         }
+         sum-=availableColors[i];
+         cout<<1000000-sum<<" ";
+         for(int j=i+1;j<4;j++)
+            cout<<"0 ";
+         cout<<endl;
+      }else{
+         cout<<"IMPOSSIBLE"<<endl;
+      }
+      test++;
    }
    return 0;
 }
