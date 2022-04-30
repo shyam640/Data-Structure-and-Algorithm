@@ -51,22 +51,9 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
-         cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
-      }
-      cout<<sum<<endl;
+      lli n,m,robot_row,robot_col,dirt_row,dirt_col;
+      cin>>n>>m>>robot_row>>robot_col>>dirt_row>>dirt_col;
+      cout<<min( robot_row<=dirt_row ? dirt_row-robot_row : 2*n-robot_row-dirt_row , robot_col<=dirt_col ? dirt_col-robot_col : 2*m-robot_col-dirt_col) <<endl;
    }
 
    return 0;

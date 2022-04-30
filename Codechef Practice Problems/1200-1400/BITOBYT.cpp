@@ -53,21 +53,27 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
-         cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
+      lli curr = 1 , person = 0 , time=0;
+      vector<lli> arr(3);
+      while(true){
+         if(person == 0){
+            if(time+2 >= n)
+               break;
+            time += 2;
+         }else if(person == 1){
+            if(time+8 >= n)
+               break;
+            time += 8;
+         }else{
+            if(time+16 >= n)
+               break;
+            time += 16;
+            curr *= 2;
+         }
+         person = (person+1)%3;
       }
-      cout<<sum<<endl;
+      arr[person] = curr;
+      cout<<arr[0]<<" "<<arr[1]<<" "<<arr[2]<<endl;
    }
-
    return 0;
 }

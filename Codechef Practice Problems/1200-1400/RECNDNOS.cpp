@@ -53,20 +53,28 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
+      lli val;
+      bool taken = 1;
+      lli prevVal = -1;
+      vlli freq(1001);
+      for(lli i=0;i<n;i++){
          cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
+         if(val == prevVal)
+            taken = !taken;
          else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
+            taken = 1;
+         if(taken)
+            freq[val]++;
+         prevVal = val;
       }
-      cout<<sum<<endl;
+      lli ans = 0 , maxFreq = 0;
+      for(lli i=1;i<1001;i++){
+         if(freq[i] > maxFreq){
+            ans = i;
+            maxFreq = freq[i];
+         }
+      }
+      cout<<ans<<endl;
    }
 
    return 0;

@@ -51,22 +51,30 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
-         cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
+      lli n,amt;
+      cin>>n>>amt;
+      vlli sweetsCst(n);
+      vlli cost(n);
+      lli a;
+      for(lli i=0;i<n;i++){
+         cin>>a;
+         sweetsCst[i] = a;
+         cost[i] += a;
       }
-      cout<<sum<<endl;
+      for(lli i=0;i<n;i++){
+         cin>>a;
+         cost[i] -= a;
+      }
+      lli ans=0,i=0;
+      for(lli i=0;i<n;i++){
+         while(amt!=0){
+            if(amt>sweetsCst[i]){
+               ans++;
+               amt-=cost[i];
+            }
+         }
+      }
+      cout<<ans<<endl;
    }
 
    return 0;

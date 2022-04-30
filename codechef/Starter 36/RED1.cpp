@@ -53,20 +53,21 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
-         cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
+      lli temp=n,pwr=0,sq=sqrt(n);
+      while(temp%2==0){
+         temp/=2;
+         pwr++;
       }
-      cout<<sum<<endl;
+      if(n==1)
+         cout<<"0"<<endl;
+      else if(pwr == 0)
+         cout<<"1"<<endl;
+      else if(pwr%2==1)
+         cout<<"-1"<<endl;
+      else if(sq*sq == n)
+         cout<<"1"<<endl;
+      else
+         cout<<"2"<<endl;
    }
 
    return 0;

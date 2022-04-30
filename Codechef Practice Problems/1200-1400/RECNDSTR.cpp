@@ -44,6 +44,16 @@ template <typename T> T _lcm(T a, T b){return (a*(b/_gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 const long double pi = atan2(0, -1);
 
+// Usefull functions
+bool all_Chars_Same(string s) {return (s.find_first_not_of(s[0]) == string::npos);}
+
+string rotateLeft(string s) {
+    return s[s.length()-1] + s.substr(0,s.length()-1) ;
+}
+
+string rotateRight(string s) {
+    return s.substr(1,s.length()) + s[0] ;
+}
 
 int main() {
    fast_io
@@ -51,22 +61,12 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
-         cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
-      }
-      cout<<sum<<endl;
+      string s;
+      cin>>s;
+      if(rotateLeft(s) == rotateRight(s))
+         cout<<"YES"<<endl;
+      else
+         cout<<"NO"<<endl;
    }
 
    return 0;

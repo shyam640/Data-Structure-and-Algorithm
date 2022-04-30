@@ -53,20 +53,10 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
+      vlli arr(n);
+      for(auto &val : arr)
          cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
-      }
-      cout<<sum<<endl;
+      
    }
 
    return 0;

@@ -51,22 +51,25 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli a(n),b(n);
-      for(auto &val : a)
-         cin>>val;
-      for(auto &val : b)
-         cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
+      lli n,k;
+      cin>>n>>k;
+      vlli arr(100);
+      lli a;
+      loop(lli,i,0,n){
+         cin>>a;
+         if(a-1 == i){
+            arr[a-1] = -1;
+            continue;
+         }
+         if(arr[a-1]!=-1)
+            arr[a-1]++;
       }
-      cout<<sum<<endl;
+      lli ans = 0;
+      for(lli i=0;i<100;i++){
+         if(arr[i]>=k)
+            ans++;
+      }
+      cout<<ans<<endl;
    }
 
    return 0;

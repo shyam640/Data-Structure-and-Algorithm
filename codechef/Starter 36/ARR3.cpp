@@ -53,21 +53,33 @@ int main() {
    while(t--){
       lli n;
       cin>>n;
-      vlli a(n),b(n);
+      vlli a(n),b(n),c(n);
       for(auto &val : a)
          cin>>val;
       for(auto &val : b)
          cin>>val;
-      lli sum = 0;
-      for(lli i=1;i<n;i++){
-         if((abs(a[i]-a[i-1]) + abs(b[i]-b[i-1])) <= (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i])))
-            sum += (abs(a[i]-a[i-1]) + abs(b[i]-b[i-1]));
-         else
-            sum += (abs(a[i] - b[i-1]) + abs(a[i-1] - b[i]));
-         // cout<<sum<<" ";
+      for(auto &val : c)
+         cin>>val;
+      lli k1,k2;
+      cin>>k1>>k2;
+      lli ans = 0;
+      for(lli i=0;i<n;i++){
+         if(c[i]>= max(a[i],b[i]))
+            ans+=c[i];
+         else if(a[i]>=b[i] and a[i]>c[i]){
+            if(k1>0){
+               k1--;
+               ans+=a[i];
+            }
+         }else if(b[i]>c[i]){
+            if(k2>0){
+               k2--;
+               ans+=b[i];
+            }
+         }else
+            ans+=c[i];
       }
-      cout<<sum<<endl;
+      cout<<ans<<endl;
    }
-
    return 0;
 }
