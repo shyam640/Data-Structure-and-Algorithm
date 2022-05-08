@@ -10,8 +10,9 @@ using namespace std;
 #define               lld                       long long double
 #define               usig                      unsigned
 #define               sig                       signed
-#define               mod                       1000000009
+#define               mod                       1000000007
 #define               infi                      1e18
+#define               neg_infi                  -1e18
 #define               endl                      "\n"
 #define               vi                        vector<int>
 #define               vc                        vector<char>
@@ -33,14 +34,19 @@ using namespace std;
 
 #define               it(var)                   var.begin(),var.end()
 #define               loop(type,var,st,end)     for(type var=st;var<end;var++)
-#define               loop_rev(type,var,st,end) for(type var=end;var>=0;var--)
+#define               loop_rev(type,var,st,end) for(type var=st;var<end;var++)
 #define               mid(left,right)           (left+(right-left)/2)
 #define               print_arr(arr,type,st,end) for(type var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
 
 
-template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
-template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
+template <typename T> T _gcd(T a, T b){if(a%b) return _gcd(b,a%b);return b;}
+template <typename T> T _lcm(T a, T b){return (a*(b/_gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const long double pi = atan2(0, -1);
+
+
+// Usefull Functions
+bool all_Chars_Same(string s) {return (s.find_first_not_of(s[0]) == string::npos);}
 
 
 int main() {
@@ -49,17 +55,41 @@ int main() {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      if(pow(3,n-1) > 1000000000)
-         cout<<"NO"<<endl;
-      else{
-         cout<<"YES"<<endl;
-         for(lli i=0;i<n;i++){
-            lli p = pow(3,i);
-            cout<<p<<" ";
+      lli n,l,r;
+      cin>>n>>l>>r;
+      if(n%2==0){
+         vlli arr((2*n)+1);
+         lli st=0,end=2*n;
+         arr[st++] = 1;
+         arr[end--] = 1;
+         lli t=1;
+         while(st<=end){
+            if(st%2==0 and end%2==0){
+               arr[st] = (n*t)%mod;
+               arr[end] = (n*t)%mod;
+               t++;
+            }
+            st++;
+            end--;
          }
-         cout<<endl;
+         print_arr(arr,lli,0,2*n);
+      }else{
+         vlli arr(2*n);
+         lli st=0,end=2*n-1;
+         arr[st++] = 1;
+         arr[end--] = 1;
+         lli t=1;
+         while(st<=end){
+            if(st%2==0 and end%2!=0){
+               arr[st] = (n*t)%mod;
+               arr[end] = (n*t)%mod;
+               t++;
+               
+            }
+            st++;
+            end--;
+         }
+         print_arr(arr,lli,0,2*n - 1);
       }
    }
 
