@@ -57,15 +57,16 @@ int main() {
    while(t--){             // 100
       lli n;
       cin>>n;
-      lli a;
+      vlli arr(n);
+      for(auto &val : arr)
+         cin>>val;
       vector<vector<long long int>> dp(n+1,vector<long long int>(33));
       for(lli i=1;i<=n;i++){
-         cin>>a;
          for(lli j=0;j<33;j++)
             dp[i][j] = dp[i-1][j];
          lli power = 32;
-         if(a!=0)
-            power = (int)log2(a);
+         if(arr[i-1]!=0)
+            power = (int)log2(arr[i-1]);
          dp[i][power]++;
       }
       // for(lli i=0;i<dp.size();i++){

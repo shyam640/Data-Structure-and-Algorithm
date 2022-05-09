@@ -47,70 +47,39 @@ const long double pi = atan2(0, -1);
 
 // Usefull Functions
 bool all_Chars_Same(string s) {return (s.find_first_not_of(s[0]) == string::npos);}
-// lli moduloFactorial(lli n){ if(n>=mod) return 0;   lli res = 1;   for(lli i=1;i<=n;i++){ res = (res*i)%mod; }   return res; }
-// lli nCr(lli n,lli r){
-//    lli num = 1;
-//    for(lli i=n;i>r;i--)
-//       num = (num*i)%mod;
-//    return ((num/moduloFactorial(num-r))%mod);
-// }
-
-
-
-lli getBinomialCoefficient(lli n, lli k){
-   lli res = 1;
-   if (k > n - k)
-      k = n - k;
-   for (lli i = 0; i < k; ++i){
-      res = (res*(n-i))%100000000000007;
-      res = (res/(i + 1))%100000000000007;
-   }
-   return res%1000000007;
-}
-
-
-void getPascalValues(lli n,lli l,lli r){
-   lli t = l+n;
-   t = t/2;
-   while(l<=r){
-      // cout<<binomialCoeff(n,3)<<endl;
-      lli ans = getBinomialCoefficient(n,t);
-      cout<<ans<<" ";
-      t++;
-      if(l<r)
-         cout<<"0 ";
-      l+=2;
-   }
-   cout<<endl;
-}
 
 
 int main() {
    fast_io
    // Write your code here....
-   int t;
+   lli t;
    cin>>t;
    while(t--){
-      lli n,l,r;
-      cin>>n>>l>>r;
-
-      // First Method - Gives Runtime Error !!
-      // vlli arr;
-      // lli c = 1;
-      // for(lli i=1;i<=n+1;i++){
-      //    arr.pb(c);
-      //    // cout<<c<<" ";
-      //    if(i!=n+1)
-      //    //    cout<<"0"<<" ";
-      //       arr.pb(0);
-      //    c = c*(n+1-i)/i;
-      // }
-      // // cout<<endl;
-      // print_arr(arr,lli,l+n,r+n);
-      // print_arr(arr,lli,l+arr.size()/2,r+arr.size()/2);
-
-      // Second Method - Using Modulo
-      getPascalValues(n,l,r);
+      lli n;
+      cin>>n;
+      string s;
+      cin>>s;
+      lli count=1,ans=0;
+      vlli countArr;
+      for(lli i=1;i<n;i++){
+         if(s[i]==s[i-1])
+            count++;
+         else{
+            if(count%2!=0){
+               ans++;
+               i++;
+            }
+            countArr.pb(count);
+            count=1;
+         }
+      }
+      countArr.pb(count);
+      // print_arr(countArr,lli,0,countArr.size()-1);
+      if(all_of(countArr.begin(),countArr.end(),[](lli val) { return !(val%2); })){
+         cout<<"0"<<endl;
+      }else{
+         cout<<min(ans,n)<<endl;
+      }
    }
 
    return 0;
