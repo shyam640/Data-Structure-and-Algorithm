@@ -1,39 +1,36 @@
-# JobYard - A Platform to Manage Jobs
+# Job Web App Hackathon Idea
 
 ### **Objective :**
 
-##### A React *Progressive Web App* (PWA) Based web application to store jobs/tasks
+##### A React *Progressive Web App* (PWA) Based web application for both job creator and seeker to find the best out of the industry.
 
 ### **Idea Breif :** 
 
-#####   
+##### Basic idea is to provide a platform for recruiter to upload their openings and candidate to daily jobs (Data can be uploaded to csv file and retrieved from the same). User can register and login on web app and apply for different openings.  
 
 ### **Implementation :**
 | UI/UX | Content | Security | user Dashboard | Feedback Forum |
 | -------- | -------- | -------- | -------- | -------- |
 
 ###### *Optional Implementation*  
-| OAuth-Implementation | Implementing Predictive Performance Analysis (PPA) Algorithm | Visualisation on user dashboard |
+| Increased Security Algorithm (Hashing) | Implementing Predictive Performance Analysis (PPA) Algorithm | Visualisation on user dashboard |
 | -------- | -------- | -------- |
 
 ### **Berief About Web App :**
 
 - ##### **UI / UX :**  The complete UI of web app will be designed in React. It will be ~~complex~~ simple, elegant, yet effective UI. 
 
-- ##### **Content :** 
-> Optoional Feature :  
+- ##### **Content :** Implementation of algorithm to update openings dynamically after specific interval.
+> Optoional Feature : Adding and analysis button to analyse company on the basis of available attributes. Building an algorithm that takes company's previous year attributes and do Predictive Performance Analysis (PPA) and return the graphical visualization of the company's previous year trends. 
 
 - ##### **Security :** Implementation of sophisticated algorithm and best encryption technique to provide a strong encryption. Platform will keep the applications of user confidential. 
 > Optoional Security : Double hashing technique may be implemented later for more security.
 
-- ##### **User Dashboard :** Implementing admin dashborad for profile management and to manage his scheduled jobs.
+- ##### **User Dashboard :** Implementing user dashborad for profile management and to manage his applications.
 > Optoional Dashboard Feature : Graphical representation of applications by user using *Chart-JS* library. *(Line Chart, Bar Chart, Pie Chart etc.)*
 
 - ##### **Feedback Forum :** Build a seperate page for public discussion and comments to welcome the new ideas and changes given by user to expand user experience.
-> Optional Feature : Filtering Option on the basis of comment, Suggestion, or complaint for inserting a new feedback and to search for specific feedback. Implementing Email alert for suggestion and complaint feedback.
-
-### **Features :**
-- 
+> Optional Feature : Filtering Option on the basis of comment, Suggestion, or compaint for inserting a new feedback and to search for specific feedback.
 
 
 ### **Timeline :**
@@ -49,7 +46,7 @@ Start Date
 │   │
 │   └───Sub Implementation
 │       └───Homepage
-│       └───Admin Login & Register
+│       └───Login & Register
 │       └─── ...
 │   
 └───Third Date

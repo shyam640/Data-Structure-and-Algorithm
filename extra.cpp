@@ -1,62 +1,86 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 
-#define               li                        long int
-#define               lf                        long float
-#define               ld                        long double
-#define               lli                       long long int
-#define               llf                       long long float
-#define               lld                       long long double
-#define               usig                      unsigned
-#define               sig                       signed
-#define               mod                       1000000007
-#define               infi                      1e18
-#define               neg_infi                  -1e18
-#define               endl                      "\n"
-#define               vi                        vector<int>
-#define               vc                        vector<char>
-#define               vs                        vector<string>
-#define               vli                       vector<long int> 
-#define               vlf                       vector<long float>
-#define               vld                       vector<long double>
-#define               vlli                      vector<long long int> 
-#define               vllf                      vector<long long float>
-#define               vlld                      vector<long long double>
+vector<vector<long long int>> storePosition(vector<char> arr){
+    vector<vector<long long int>> stored(26);
+    for(long long int i=0;i<arr.size();i++){
+         if(arr[i]!='\0')
+            stored[arr[i]-'a'].push_back(i);
+    }
+    return stored;
+}
 
-#define               pf                        push_front
-#define               pb                        push_back
-#define               ob                        pop_back
-#define               of                        pop_front
-#define               pq                        priority_queue
-#define               ump                       unordered_map
+bool no_duplicate(vector<vector<long long int>> arr,long long int l,long long int r){
+    for(long long int i=0;i<26;i++){
+        auto first = lower_bound(arr[i].begin(),arr[i].end(),l-1);
+        if(first != arr[i].end() and *first<r){
+            first++;
+            if(first != arr[i].end() and *first < r)
+                return false;
+        }
+    }
+    return true;
+}
 
+long long int goodString (long long int N, long long int Q, string S, vector<long long int> arr, vector<vector<long long int> > ranges) {
+    vector<char> ch(S.length()+1);
+    for(long long int i=0;i<N;i++)
+        ch[i] = S[i];
+    long long int i=0;
+    long long int count=0;
+    for(i=0;i<N;i++){
+        // vector<vector<char>> stored = storePosition(ans[i]);
+        ch[arr[i]-1] = '\0';
+        bool flag=1;
+        for(long long int j=0;j<Q;j++){
+            if(!no_duplicate(storePosition(ch), ranges[j][0], ranges[j][1])){
+                flag=0;
+                break;
+            }
+        }
+        count++;
+        if(flag){
+            if(i==0)    count--;
+            break;
+        }
+    }
 
-#define               it(var)                   var.begin(),var.end()
-#define               loop(type,var,st,end)     for(type var=st;var<end;var++)
-#define               loop_rev(type,var,st,end) for(type var=st;var<end;var++)
-#define               mid(left,right)           (left+(right-left)/2)
-#define               print_arr(arr,type,st,end) for(type var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
-
-
-template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
-template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
-#define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-const long double pi = atan2(0, -1);
-
+    return count;
+}
 
 int main() {
-   fast_io
-   // Write your code here....
-   lli t;
-   cin>>t;
-   while(t--){
-      lli x,m,n;
-      cin>>x>>n>>m;
-      if(((m%n)%2==0 and x%2==0) or ((m%n)%2!=0 and x%2!=0))
-         cout<<"YES"<<endl;
-      else
-         cout<<"NO"<<endl;
-   }
-   return 0;
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    long long int T;
+    cin >> T;
+    for(long long int t_i = 0; t_i < T; t_i++)
+    {
+        long long int N;
+        cin >> N;
+        long long int Q;
+        cin >> Q;
+        string S;
+        cin >> S;
+        vector<long long int> arr(N);
+        for(long long int i_arr = 0; i_arr < N; i_arr++)
+        {
+        	cin >> arr[i_arr];
+        }
+        vector<vector<long long int> > ranges(Q, vector<long long int>(2));
+        for (long long int i_ranges = 0; i_ranges < Q; i_ranges++)
+        {
+        	for(long long int j_ranges = 0; j_ranges < 2; j_ranges++)
+        	{
+        		cin >> ranges[i_ranges][j_ranges];
+        	}
+        }
+
+        long long int out_;
+        out_ = goodString(N, Q, S, arr, ranges);
+        cout << out_;
+        cout << "\n";
+    }
 }
+
+
