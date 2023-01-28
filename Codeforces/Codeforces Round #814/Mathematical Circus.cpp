@@ -39,30 +39,49 @@ using namespace std;
 #define               print_arr(arr,type,st,end) for(type var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
 
 
-template <typename T> T gcd(T a, T b){if(a%b) return gcd(b,a%b);return b;}
-template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
+template <typename T> T _gcd(T a, T b){if(a%b) return _gcd(b,a%b);return b;}
+template <typename T> T _lcm(T a, T b){return (a*(b/_gcd(a,b)));}
 #define              fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const long double pi = atan2(0, -1);
 
 
+// Usefull Functions
+bool all_Chars_Same(string s) {return (s.find_first_not_of(s[0]) == string::npos);}
 
-void file_input_output(){
-   fast_io
-   #ifndef ONLINE_JUDGE
-   freopen("input.txt", "r", stdin);
-   freopen("output.txt", "w", stdout);
-   #endif
+bool check(vlli &a1,vlli &a2, vlli &a3){
+   if(a1.size()+a2.size()!=a3.size())
+         return false;
+   return true;
 }
 
-int main(int argc, char const *argv[]) {
-   clock_t begin = clock();
-   file_input_output();       // Taking file input and displaying output in output.txt
+int main() {
+   fast_io
    // Write your code here....
-   
+   lli t;
+   cin>>t;
+   while(t--){
+      lli n,k,idx=0;
+      cin>>n>>k;
+      vlli a1,a2,a3;
+      for(lli i=1;i<=n;i++){
+         if(i%4==0)
+            a1.pb(i);
+         else if((i+k)%4==0)
+            a2.pb(i);
+         else
+            a3.pb(i);
+      }
+      if(check(a1,a2,a3)){
+         cout<<"YES"<<endl;
+         for(auto &val : a1)
+            cout<<a3[idx++]<<" "<<val<<endl;
+         for(auto &val : a2)
+            cout<<val<<" "<<a3[idx++]<<endl;
+      }else{
+         cout<<"NO"<<endl;
+      }
+      
+   }
 
-
-   #ifndef ONLINE_JUDGE 
-   clock_t end = clock();
-   cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms";
-   #endif 
    return 0;
 }

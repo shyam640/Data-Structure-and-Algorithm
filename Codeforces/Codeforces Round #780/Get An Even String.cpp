@@ -45,16 +45,103 @@ template <typename T> T lcm(T a, T b){return (a*(b/gcd(a,b)));}
 const long double pi = atan2(0, -1);
 
 
+void fill(vector<vector<int>> &board,int x, int y){
+   if ((x == 1 && y == 1))
+            board[2 - 1][3 - 1] = 2;
+        else if ((x == 1 && y == 8))
+            board[2 - 1][6 - 1] = 2;
+        else if (x == 8 && y == 1)
+            board[7 - 1][3 - 1] = 2;
+        else if (x == 8 && y == 8)
+            board[7 - 1][6 - 1] = 2;
+        else if (x == 1)
+        {
+            board[x + 2 - 1][y - 1 - 1] = 2;
+            board[x + 2 - 1][y + 1 - 1] = 2;
+        }
+        else if (x == 8)
+        {
+            board[x - 2 - 1][y - 1 - 1] = 2;
+            board[x - 2 - 1][y + 1 - 1] = 2;
+        }
+        else if (y == 1)
+        {
+            board[x - 1 - 1][y + 2 - 1] = 2;
+            board[x + 1 - 1][y + 2 - 1] = 2;
+        }
+        else if (y == 8)
+        {
+            board[x - 1 - 1][y - 2 - 1] = 2;
+            board[x + 1 - 1][y - 2 - 1] = 2;
+        }
+        else if (x == 2 && y == 2)
+        {
+            board[x - 1 - 1][y + 3 - 1] = 2;
+            board[x + 2 - 1][y - 1 - 1] = 2;
+        }
+        else if (x == 2 && y == 7)
+        {
+            board[x - 1 - 1][y - 2 - 1] = 2;
+            board[x + 3 - 1][y + 1 - 1] = 2;
+        }
+        else if (x == 7 && y == 2)
+        {
+            board[x + 1 - 1][y + 3 - 1] = 2;
+            board[x - 2 - 1][y - 1 - 1] = 2;
+        }
+        else if (x == 7 && y == 7)
+        {
+            board[x + 1 - 1][y - 3 - 1] = 2;
+            board[x - 2 - 1][y + 1 - 1] = 2;
+        }
+        else if (x == 2)
+        {
+            board[x - 1 - 1][y - 2 - 1] = 2;
+            board[x + 1 - 1][y + 2 - 1] = 2;
+        }
+        else if (x == 7)
+        {
+            board[x - 1 - 1][y - 2 - 1] = 2;
+            board[x + 1 - 1][y + 2 - 1] = 2;
+        }
+        else if (y == 2)
+        {
+            board[x - 2 - 1][y - 1 - 1] = 2;
+            board[x + 2 - 1][y + 1 - 1] = 2;
+        }
+        else if (y == 7)
+        {
+            board[x - 2 - 1][y + 1 - 1] = 2;
+            board[x + 2 - 1][y - 1 - 1] = 2;
+        }
+        else
+        {
+            board[x - 1 - 1][y - 2 - 1] = 2;
+            board[x + 1 - 1][y + 2 - 1] = 2;
+        }
+}
+
 int main() {
    fast_io
-   // Write your code here....
+   // Write your code here...
+
+
    lli t;
-   cin>>t;
-   while(t--){
-      string s;
-      cin>>s;
-      if(s.lengt)
-   }
+    cin>>t;
+    while(t--){
+        lli x,y;
+        cin>>x>>y;
+        vector<vector<int>> board(n,vector<int>(n));
+        board[x-1][y-1] = 1;
+        fill(board,x,y);
+        
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                cout<<board[i][j];
+            }
+            cout<<endl;
+        }
+    }
 
    return 0;
 }
