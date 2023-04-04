@@ -1,3 +1,11 @@
+/*
+Given an N×N Matrix Mat[][] of N rows and N columns. There is exactly one Queen on the 
+chessboard and the cell that is under the attack of the Queen is represented by ‘Q’ and 
+the cell which is not under attack of the Queen is represented by ‘.’. The task is to 
+find the position of the Queen.
+*/
+
+
 #include<bits/stdc++.h>
 
 // ++++++++++++++++++++++++++++++++++++++++++++  @its_shyam640 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -27,6 +35,9 @@ using namespace std;
 #define               vi                        vector<int>
 #define               vc                        vector<char>
 #define               vs                        vector<string>
+#define               vli                       vector<long int> 
+#define               vlf                       vector<long float>
+#define               vld                       vector<long double>
 #define               vlli                      vector<long long int> 
 #define               vllf                      vector<long long float>
 #define               vlld                      vector<long long double>
@@ -35,13 +46,19 @@ using namespace std;
 #define               pb                        push_back
 #define               ob                        pop_back
 #define               of                        pop_front
+#define               pq                        priority_queue
+#define               ump                       unordered_map
 
 
 #define               it(var)                   var.begin(),var.end()
 #define               rit(var)                  var.rbegin(),var.rend()
+#define               loop(i,st,end)            for(auto i=st;i<=end;i++)
+#define               loop_rev(i,st,end)        for(auto i=end;i>=st;i--)
 #define               mid(left,right)           (left+(right-left)/2)
-#define               fast_io                   ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-#define               _print(x)                 cerr << #x << " = " << x << endl;
+#define               print_arr(arr,st,end)     for(auto var = st;var<=end;var++)  cout<<arr[var]<<" "; cout<<endl;
+
+#define               what_is(x)                 cerr << #x << " is " << x << endl;
+#define               fast_io                    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
 template <typename T> T _gcd(T a, T b){if(a%b) return _gcd(b,a%b);return b;}
 template <typename T> T _lcm(T a, T b){return (a*(b/_gcd(a,b)));}
@@ -51,45 +68,112 @@ bool all_Chars_Same(string s) {return (s.find_first_not_of(s[0]) == string::npos
 
 
 const long double pi = atan2(0, -1);
-string pi100 = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
 
 
-class Debug{
-   public:
-      void dbg(auto var) {cerr << var;}
+/***********************************   TIPS   *************************************
 
-      // pair print
-      template <class T, class V> 
-      void dbg(pair <T, V> p) {cerr<< "pair = {"; dbg(p.first); cerr << ","; dbg(p.second); cerr << "}" << endl;}
+##   odd => n&1      even => !(n%1)
 
-      // vector print
-      template <class T> 
-      void dbg(vector <T> v) {cerr << "array = { "; for (T i : v) {dbg(i); cerr << " ";} cerr << "}" << endl;}
+##   n<<1 => Multiply n with 2            n>>1 => Divide n with 2
 
-      // print set
-      template <class T> 
-      void dbg(set <T> v) {cerr << "set = [ "; for (T i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
-      
-      // print map
-      template <class T, class V> 
-      void dbg(map <T, V> v) {cerr << "map = [ \n"; for (auto i : v) {dbg(i); cerr << endl;} cerr << "]" << endl;}
-      
-      // print unordered_map
-      template <class T, class V> 
-      void dbg(unordered_map <T, V> v) {cerr << "ump = [ "; for (auto i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
-      
-      // print multiset
-      template <class T> 
-      void dbg(multiset <T> v) {cerr << "multiset = [ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]" << endl;}
-};
+##   swapping two numbers
+      a ^= b;
+      b ^= a;
+      a ^= b;
+
+##   ASCII Numbers
+     48-57 -> 0-9
+     65-90 -> A-Z
+     97-122 -> a-z
+
+## Total Number of digits => floor(log10(N)) + 1
+
+## Check if number is power of 2 => n && (!(n&(n-1)))
+
+## Check weather all elements are positive or not
+   all_of(arr, arr+n, [](int x) { return x>0; }) ? true : false
+   <=== OR ===>
+   all_of(arr, arr+n, isPositive())
+
+## Built in functions
+   what_is(__builtin_ffs(4))        # Returns position of first set bit
+   what_is(__builtin_clz(7))        # Returns 32 - no. of set bits
+   what_is(__builtin_popcount(6))   # Returns number of ones(or setbits) in number
+
+## Raw strings   string r_str = R"(Hello\tWorld\n)";    Output : Hello\tWorld\n
+
+## Binary Representation of a number
+   void show_binary(int n) {
+      for (int i = 0; i < 20; ++i) {
+         cout << !!(n & (1 << i));
+      }
+      cout << "\n";
+   }
+   Instead, one can simply write
+
+   cout << bitset<20>(n) << "\n";
+Also, if you want to print an octal or a hexadecimal representation of a number, 
+you can simply write cout << oct << n << "\n" and cout << hex << n << "\n", 
+respectively.  To return back to normal decimal, use cout << dec
 
 
-/*###########################################       Usefull Functions          #############################################*/
+## Minimum and Maximum element of array
+   vector<int> x = {1, 2, 3, 4};
+   auto it = minmax_element(all(x));
+   cout << *it.first << ' ' << *it.second << endl;
+
+
+## 
+
+
+
+
+
+
+
+*/
+
+/******************************************** USEFUL STL FUNCTIONS ****************************
+
+# accumulate(first_iterator, last_iterator, initial value of sum) – Does the summation of vector elements
+
+# lower_bound(first_iterator, last_iterator, x) – returns an iterator pointing to the first element in the range [first,last) which has a value not less than ‘x’.
+
+# upper_bound(first_iterator, last_iterator, x) – returns an iterator pointing to the first element in the range [first,last) which has a value greater than ‘x’. 
+
+# partition(beg, end, condition) :- This function is used to partition the elements on basis of condition mentioned in its arguments.
+
+# is_partitioned(beg, end, condition) :- This function returns boolean true if container is partitioned else returns false.
+
+# stable_partition(beg, end, condition) :- This function is used to partition the elements on basis of condition mentioned in its arguments in such a way that the relative order of the elements is preserved..
+
+# partition_point(beg, end, condition) :- This function returns an iterator pointing to the partition point of container i.e. the first element in the partitioned range [beg,end) for which condition is not true. The container should already be partitioned for this function to work.
+
+# sort(v.begin(),v.end(),greater<int>()) :- Sorting array in decreasing order
+
+# partial_sort(start,partition_point,end) :- Sort array in range [start,partition_point]
+
+
+
+
+
+*/
+
+
+/************************************** CODEFORCES TRICKS ******************************************
+
+## If given like 1<= a <= b <= 10^5...... ab <= 10^5     then its actually  a<=400
+
+
+
+*/
+
+
+/*##############################       Usefull Functions          ###################################*/
 
 /**************************** Check if number is prime or not   ********************************/
 bool isPrime(lli n){auto count = 0;for(auto idx=1;(idx*idx)<=n;idx++){if((idx*idx)==n){count++;continue;}if(n%idx==0)count+=2;}if(count==2)return true;return false;}
 
-lli inv(lli i){if(i==1) return 1;return (def_mod-((def_mod/i)*inv(def_mod%i))%def_mod)%def_mod;}
 
 /****************************** GENERATE PRIME FACTORS  ********************************/
 map<lli,lli> primeFactors(lli n){ map<lli,lli> factors; while (n % 2 == 0) { factors[2]++; n = n/2; } for (int i = 3; i <= sqrt(n); i = i + 2) { while (n % i == 0) { factors[i]++; n = n/i; } } if (n > 2) factors[n]++; return factors; }
@@ -101,8 +185,7 @@ lli moduloFactorial(lli n, lli p){if (n >= p) return 0; lli result = 1; for (lli
 
 
 /****************************** Generate Testcases **************************/
-void genTestArr(auto &arr, auto pivot){ generate(arr.begin(), arr.end(), [&pivot]{ return (rand() % pivot); });}
-
+void generateTestcase(vlli &arr, lli pivot){ generate(arr.begin(), arr.end(), [&pivot]{ return (rand() % pivot); });}
 
 /****************************** SORT MAP BY VALUE **************************/
 void sortMapByValue(map<string, int>& M) { multimap<int, string> MM; for (auto& it : M) { MM.insert({ it.second, it.first }); } for (auto& it : MM) { cout << it.second << ' ' << it.first << endl; } }
@@ -118,7 +201,6 @@ struct TreeNode{
     int data;
     TreeNode* left, * right;
 };
-
 
 TreeNode* newNode(int data){
     TreeNode* node = (TreeNode*)malloc(sizeof(TreeNode));
@@ -145,6 +227,23 @@ void displayTree(TreeNode* root){
    }
 }
 
+lli checkAttacks(vector<vector<char>> grid, lli row, lli col){
+   
+}
+
+pair<lli,lli> getPos(vector<vector<char>> &grid, lli n, lli attackPosCount){
+   for(lli i=0;i<n;i++){
+      for(lli j=0;j<n;j++){
+         if(grid[i][j]=='Q'){
+            if(checkAttacks(grid,i,j) == attackPosCount)
+               return {i+1,j+1};
+         }
+      }
+   }
+   return {-1,-1};
+}
+
+
 void file_input_output(){
    ios_base::sync_with_stdio(0); 
    cin.tie(0); 
@@ -152,93 +251,32 @@ void file_input_output(){
    #ifndef ONLINE_JUDGE
    freopen("input.txt", "r", stdin);
    freopen("output.txt", "w", stdout);
-   freopen("error.txt", "w", stderr);
    #endif
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SNIPPET ENDED $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-
-
-
 int main(int argc, char const *argv[]) {
    clock_t begin = clock();
-   Debug d;
-   fast_io
-   // file_input_output();       // Taking file input and displaying output in output.txt
+   file_input_output();       // Taking file input and displaying output in output.txt
    // Write your code here....
-   lli t;
-   cin>>t;
-   while(t--){
-      lli n;
-      cin>>n;
-      vlli pos, neg;
-      lli val , zc = 0;
-      for(lli i=0;i<n;i++){
-         cin>>val;
-         if(val>0)   pos.push_back(val);
-         else if(val<0) neg.push_back(val);
-         else  zc++;
-      }
-
-      sort(it(pos));
-      sort(it(neg));
-
-      if(n==1 and val>=0)
-         cout<<"No"<<endl;
-      else{
-         vlli ans;
-         lli i=0, j=0;
-         lli sum = 0;
-         cout<<"Yes"<<endl;
-         if(neg.size()>=pos.size()){
-            while(i<neg.size()){
-               cout<<neg[i]<<" ";
-               sum += neg[i];
-               if(zc>0){
-                  cout<<"0 ";
-                  zc--;
-               }
-               while(j<pos.size()){
-                  if(sum + pos[j] >= 0) break;
-                  sum += pos[j];
-                  cout<<pos[j]<<" ";
-                  j++;
-               }
-               i++;
-            }
-            cout<<endl;
-         }else{
-            while(i<pos.size()){
-               cout<<pos[i]<<" ";
-               sum += pos[i];
-               if(zc>0){
-                  cout<<"0 ";
-                  zc--;
-               }
-               while(j<neg.size()){
-                  if(sum + neg[j] <= 0) break;
-                  sum += neg[j];
-                  cout<<neg[j]<<" ";
-                  j++;
-               }
-               i++;
-            }
-            cout<<endl;
-         }
+   lli n;
+   cin>>n;
+   vector<vector<char>> grid(n,vector<char>(n));
+   for(lli i=0;i<n;i++){
+      for(lli j=0;j<n;j++){
+         cin>>grid[i][j];
+         if(grid[i][j]=='Q')  attackPosCount++;
       }
    }
-
+   pair<lli,lli> pos = getPos(grid,n,attackPosCount);
+   cout<<pos.first<<" "<<pos.second<<endl;
 
 
    #ifndef ONLINE_JUDGE 
    clock_t end = clock();
-   cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms"<<endl;
-   cout<<"Date : "<<__DATE__<< endl;
-   cout<<"Time : "<<__TIME__<< endl;
+   cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms";
    #endif 
    return 0;
 }
-
 
 
 

@@ -169,62 +169,21 @@ int main(int argc, char const *argv[]) {
    lli t;
    cin>>t;
    while(t--){
-      lli n;
-      cin>>n;
-      vlli pos, neg;
-      lli val , zc = 0;
-      for(lli i=0;i<n;i++){
-         cin>>val;
-         if(val>0)   pos.push_back(val);
-         else if(val<0) neg.push_back(val);
-         else  zc++;
-      }
-
-      sort(it(pos));
-      sort(it(neg));
-
-      if(n==1 and val>=0)
-         cout<<"No"<<endl;
-      else{
-         vlli ans;
-         lli i=0, j=0;
-         lli sum = 0;
-         cout<<"Yes"<<endl;
-         if(neg.size()>=pos.size()){
-            while(i<neg.size()){
-               cout<<neg[i]<<" ";
-               sum += neg[i];
-               if(zc>0){
-                  cout<<"0 ";
-                  zc--;
-               }
-               while(j<pos.size()){
-                  if(sum + pos[j] >= 0) break;
-                  sum += pos[j];
-                  cout<<pos[j]<<" ";
-                  j++;
-               }
-               i++;
-            }
-            cout<<endl;
-         }else{
-            while(i<pos.size()){
-               cout<<pos[i]<<" ";
-               sum += pos[i];
-               if(zc>0){
-                  cout<<"0 ";
-                  zc--;
-               }
-               while(j<neg.size()){
-                  if(sum + neg[j] <= 0) break;
-                  sum += neg[j];
-                  cout<<neg[j]<<" ";
-                  j++;
-               }
-               i++;
-            }
-            cout<<endl;
+      lli n, m, stR, stC, destR, destC;
+      string dir;
+      cin>>n>>m>>stR>>stC>>destR>>destC>>dir;
+      lli tR = stR, tC = stC;
+      while(true){
+         if(stR==destR and stCol==destC){
+            cout<<bounces<<endl;
+            break;
          }
+         if(stR==tR and stC==tc){
+            cout<<"-1"<<endl;
+            break;
+         }
+
+         
       }
    }
 

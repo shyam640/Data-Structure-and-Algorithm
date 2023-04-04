@@ -1,0 +1,97 @@
+/***********************************   TIPS   *************************************
+
+##   odd => n&1      even => !(n%1)
+
+##   n<<1 => Multiply n with 2            n>>1 => Divide n with 2
+
+##   swapping two numbers
+      a ^= b;
+      b ^= a;
+      a ^= b;
+
+##   ASCII Numbers
+     48-57 -> 0-9
+     65-90 -> A-Z
+     97-122 -> a-z
+
+## Total Number of digits => floor(log10(N)) + 1
+
+## Check if number is power of 2 => n && (!(n&(n-1)))
+
+## Check weather all elements are positive or not
+   all_of(arr, arr+n, [](int x) { return x>0; }) ? true : false
+   <=== OR ===>
+   all_of(arr, arr+n, isPositive())
+
+## Built in functions
+   what_is(__builtin_ffs(4))        # Returns position of first set bit
+   what_is(__builtin_clz(7))        # Returns 32 - no. of set bits
+   what_is(__builtin_popcount(6))   # Returns number of ones(or setbits) in number
+
+## Raw strings   string r_str = R"(Hello\tWorld\n)";    Output : Hello\tWorld\n
+
+## Binary Representation of a number
+   void show_binary(int n) {
+      for (int i = 0; i < 20; ++i) {
+         cout << !!(n & (1 << i));
+      }
+      cout << "\n";
+   }
+   Instead, one can simply write
+
+   cout << bitset<20>(n) << "\n";
+Also, if you want to print an octal or a hexadecimal representation of a number, 
+you can simply write cout << oct << n << "\n" and cout << hex << n << "\n", 
+respectively.  To return back to normal decimal, use cout << dec
+
+
+## Minimum and Maximum element of array
+   vector<int> x = {1, 2, 3, 4};
+   auto it = minmax_element(all(x));
+   cout << *it.first << ' ' << *it.second << endl;
+
+
+## 
+
+
+
+
+
+
+
+*/
+
+/******************************************** USEFUL STL FUNCTIONS ****************************
+
+# accumulate(first_iterator, last_iterator, initial value of sum) – Does the summation of vector elements
+
+# lower_bound(first_iterator, last_iterator, x) – returns an iterator pointing to the first element in the range [first,last) which has a value not less than ‘x’.
+
+# upper_bound(first_iterator, last_iterator, x) – returns an iterator pointing to the first element in the range [first,last) which has a value greater than ‘x’. 
+
+# partition(beg, end, condition) :- This function is used to partition the elements on basis of condition mentioned in its arguments.
+
+# is_partitioned(beg, end, condition) :- This function returns boolean true if container is partitioned else returns false.
+
+# stable_partition(beg, end, condition) :- This function is used to partition the elements on basis of condition mentioned in its arguments in such a way that the relative order of the elements is preserved..
+
+# partition_point(beg, end, condition) :- This function returns an iterator pointing to the partition point of container i.e. the first element in the partitioned range [beg,end) for which condition is not true. The container should already be partitioned for this function to work.
+
+# sort(v.begin(),v.end(),greater<int>()) :- Sorting array in decreasing order
+
+# partial_sort(start,partition_point,end) :- Sort array in range [start,partition_point]
+
+
+
+
+
+*/
+
+
+/************************************** CODEFORCES TRICKS ******************************************
+
+## If given like 1<= a <= b <= 10^5...... ab <= 10^5     then its actually  a<=400
+
+
+
+*/

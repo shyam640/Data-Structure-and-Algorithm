@@ -2,7 +2,7 @@
 using namespace std;
 
 bool cyclePresentUsingBFS(int node, vector<int> &visited, vector<int> adj[], int v){
-   queue<pair<int,int>> q;
+   queue<pair<int,int>> q;    // {node, prev_node}
    visited[node] = true;
    q.push({node,-1});
    while(!q.empty()){

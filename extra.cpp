@@ -55,32 +55,32 @@ string pi100 = "3.14159265358979323846264338327950288419716939937510582097494459
 
 
 class Debug{
-   public:
-      void dbg(auto var) {cerr << var;}
+	public:
+		void dbg(auto var) {cerr << var;}
 
-      // pair print
-      template <class T, class V> 
-      void dbg(pair <T, V> p) {cerr<< "pair = {"; dbg(p.first); cerr << ","; dbg(p.second); cerr << "}" << endl;}
+		// pair print
+		template <class T, class V> 
+		void dbg(pair <T, V> p) {cerr<< "pair = {"; dbg(p.first); cerr << ","; dbg(p.second); cerr << "}" << endl;}
 
-      // vector print
-      template <class T> 
-      void dbg(vector <T> v) {cerr << "array = { "; for (T i : v) {dbg(i); cerr << " ";} cerr << "}" << endl;}
+		// vector print
+		template <class T> 
+		void dbg(vector <T> v) {cerr << "array = { "; for (T i : v) {dbg(i); cerr << " ";} cerr << "}" << endl;}
 
-      // print set
-      template <class T> 
-      void dbg(set <T> v) {cerr << "set = [ "; for (T i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
-      
-      // print map
-      template <class T, class V> 
-      void dbg(map <T, V> v) {cerr << "map = [ \n"; for (auto i : v) {dbg(i); cerr << endl;} cerr << "]" << endl;}
-      
-      // print unordered_map
-      template <class T, class V> 
-      void dbg(unordered_map <T, V> v) {cerr << "ump = [ "; for (auto i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
-      
-      // print multiset
-      template <class T> 
-      void dbg(multiset <T> v) {cerr << "multiset = [ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]" << endl;}
+		// print set
+		template <class T> 
+		void dbg(set <T> v) {cerr << "set = [ "; for (T i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
+		
+		// print map
+		template <class T, class V> 
+		void dbg(map <T, V> v) {cerr << "map = [ \n"; for (auto i : v) {dbg(i); cerr << endl;} cerr << "]" << endl;}
+		
+		// print unordered_map
+		template <class T, class V> 
+		void dbg(unordered_map <T, V> v) {cerr << "ump = [ "; for (auto i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
+		
+		// print multiset
+		template <class T> 
+		void dbg(multiset <T> v) {cerr << "multiset = [ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]" << endl;}
 };
 
 
@@ -115,128 +115,142 @@ vector<map<lli,lli>> gcdOnSubsegments(vlli arr){ vector<map<lli, lli>> sub_gcd(a
 
 /********************  CREATE BINARY TREE *********************/
 struct TreeNode{
-    int data;
-    TreeNode* left, * right;
+	 int data;
+	 TreeNode* left, * right;
 };
 
 
 TreeNode* newNode(int data){
-    TreeNode* node = (TreeNode*)malloc(sizeof(TreeNode));
-    node->data = data;
-    node->left = node->right = NULL;
-    return (node);
+	 TreeNode* node = (TreeNode*)malloc(sizeof(TreeNode));
+	 node->data = data;
+	 node->left = node->right = NULL;
+	 return (node);
 }
 
 TreeNode* createTreeFromLOT(auto arr,lli i, lli n){
-   TreeNode *root = nullptr;
-   if (i < n){
-      root = newNode(arr[i]);
-      root->left = createTreeFromLOT(arr,2 * i + 1, n);
-      root->right = createTreeFromLOT(arr,2 * i + 2, n);
-   }
-   return root;
+	TreeNode *root = nullptr;
+	if (i < n){
+		root = newNode(arr[i]);
+		root->left = createTreeFromLOT(arr,2 * i + 1, n);
+		root->right = createTreeFromLOT(arr,2 * i + 2, n);
+	}
+	return root;
 }
 
 void displayTree(TreeNode* root){
-   if (root != NULL){
-      displayTree(root->left);
-      cout << root->data<<" -> ";
-      displayTree(root->right);
-   }
+	if (root != NULL){
+		displayTree(root->left);
+		cout << root->data<<" -> ";
+		displayTree(root->right);
+	}
 }
 
 void file_input_output(){
-   ios_base::sync_with_stdio(0); 
-   cin.tie(0); 
-   cout.tie(0);
-   #ifndef ONLINE_JUDGE
-   freopen("input.txt", "r", stdin);
-   freopen("output.txt", "w", stdout);
-   freopen("error.txt", "w", stderr);
-   #endif
+	ios_base::sync_with_stdio(0); 
+	cin.tie(0); 
+	cout.tie(0);
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+	freopen("error.txt", "w", stderr);
+	#endif
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SNIPPET ENDED $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
+int getClosest(int val1, int val2, int target){
+if (target - val1 >= val2 - target)	return val2;
+else	return val1;
+}
 
+int bin_search(vlli arr, int target){
+	int n = arr.size();
+	if (target <= arr[0])	return arr[0];
+	if (target >= arr[n - 1])	return arr[n - 1];
+
+	int i = 0, j = n, mid = 0;
+	while (i < j) {
+		mid = (i + j) / 2;
+
+		if (arr[mid] == target)
+			return arr[mid];
+
+		if (target < arr[mid]) {
+			if (mid > 0 && target > arr[mid - 1])
+					return getClosest(arr[mid - 1], arr[mid], target);
+			j = mid;
+		}
+		else {
+			if (mid < n - 1 && target < arr[mid + 1])
+					return getClosest(arr[mid],arr[mid + 1], target);
+			i = mid + 1;
+		}
+	}
+
+	return arr[mid];
+}
+
+// int fun(vlli arr, int key, int low, int high) {
+// 	int max_limit = high;
+// 	while(low<high) {
+// 		int mid = low +(high-low)/2.0;
+// 		if(arr[mid]<key) {
+// 			low = mid + 1;
+// 		}else high = mid;
+// 	}
+
+// 	return arr[high];
+// }
 
 int main(int argc, char const *argv[]) {
-   clock_t begin = clock();
-   Debug d;
-   fast_io
-   // file_input_output();       // Taking file input and displaying output in output.txt
-   // Write your code here....
-   lli t;
-   cin>>t;
-   while(t--){
-      lli n;
-      cin>>n;
-      vlli pos, neg;
-      lli val , zc = 0;
-      for(lli i=0;i<n;i++){
-         cin>>val;
-         if(val>0)   pos.push_back(val);
-         else if(val<0) neg.push_back(val);
-         else  zc++;
-      }
-
-      sort(it(pos));
-      sort(it(neg));
-
-      if(n==1 and val>=0)
-         cout<<"No"<<endl;
-      else{
-         vlli ans;
-         lli i=0, j=0;
-         lli sum = 0;
-         cout<<"Yes"<<endl;
-         if(neg.size()>=pos.size()){
-            while(i<neg.size()){
-               cout<<neg[i]<<" ";
-               sum += neg[i];
-               if(zc>0){
-                  cout<<"0 ";
-                  zc--;
-               }
-               while(j<pos.size()){
-                  if(sum + pos[j] >= 0) break;
-                  sum += pos[j];
-                  cout<<pos[j]<<" ";
-                  j++;
-               }
-               i++;
-            }
-            cout<<endl;
-         }else{
-            while(i<pos.size()){
-               cout<<pos[i]<<" ";
-               sum += pos[i];
-               if(zc>0){
-                  cout<<"0 ";
-                  zc--;
-               }
-               while(j<neg.size()){
-                  if(sum + neg[j] <= 0) break;
-                  sum += neg[j];
-                  cout<<neg[j]<<" ";
-                  j++;
-               }
-               i++;
-            }
-            cout<<endl;
-         }
-      }
-   }
+	clock_t begin = clock();
+	Debug d;
+	fast_io
+	// file_input_output();       // Taking file input and displaying output in output.txt
+	// Write your code here....
+	lli t;
+	cin>>t;
+	while(t--){
+		lli n, m;
+		cin>>n>>m;
+		vlli slopes;
+		lli k;
+		for(lli i=0;i<n;i++){
+			cin>>k;
+			slopes.push_back(k);
+		}
+		sort(it(slopes));
+		lli a, b, c;
+		for(lli i=0;i<m;i++){
+			cin>>a>>b>>c;
+			// lli close = bin_search(slopes, b);
+			// lli close = fun(slopes, b, 0, slopes.size()-1);
+			// _print(close);
+			auto l_close = lower_bound(slopes.begin(), slopes.end(), b);
+			auto u_close = upper_bound(slopes.begin(), slopes.end(), b);
+			_print(*l_close);
+			_print(*u_close);
+			lli mn = min(b-*l_close, *u_close-b);
+			lli p = pow(mn, 2);
+			if(p - 4*a*c >= 0){
+				cout<<"NO"<<endl;
+			}else{
+				cout<<"YES"<<endl;
+				cout<<mn<<endl;
+			}
+		}
+		cout<<endl;
+	}
 
 
 
-   #ifndef ONLINE_JUDGE 
-   clock_t end = clock();
-   cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms"<<endl;
-   cout<<"Date : "<<__DATE__<< endl;
-   cout<<"Time : "<<__TIME__<< endl;
-   #endif 
-   return 0;
+	#ifndef ONLINE_JUDGE 
+	clock_t end = clock();
+	cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms"<<endl;
+	cout<<"Date : "<<__DATE__<< endl;
+	cout<<"Time : "<<__TIME__<< endl;
+	#endif 
+	return 0;
 }
 
 
