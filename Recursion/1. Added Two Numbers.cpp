@@ -12,6 +12,8 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+#include "debugging.h"
 class Solution {
 public:
     void deleteHead(ListNode* &head){

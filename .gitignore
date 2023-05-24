@@ -1,3 +1,5 @@
 *.exe
 *.bin
 *.cph
+node_modules
+*.vscode
