@@ -1,49 +1,182 @@
+// Explaination (if uploaded) available at https://www.dropbox.com/sh/204cee9j2ebr12o/AACMue1QTlo42O-B_d4OJnt4a?dl=0
+
+
 #include<bits/stdc++.h>
+
+// ++++++++++++++++++++++++++++++++++++++++++++  @its_shyam640 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 using namespace std;
 
-vector<int> skippedProduct(vector<int> arr){
-	// Method 1
-	vector<int> ans;
-	for(int i=0;i<arr.size();i++){
-		int prod = 1;
-		for(int j=i-1;j>=0;j--){
-			prod = prod*arr[j];
-		}
-		for(int j=i+1;j<arr.size();j++){
-			prod = prod*arr[j];
-		}
-		ans.push_back(prod);
-	}
-	return ans;
-	
-	// Method 2
-	// vector<int> ans;
-	// long long int prod = 1;
-	// for(auto val : arr)	prod*=val;
-	// for(auto val : arr)	ans.push_back(prod/val);
-	// return ans;
+#define               li                        long int
+#define               lf                        long float
+#define               ld                        long double
+#define               lli                       long long int
+#define               llf                       long long float
+#define               lld                       long long double
+#define               endl                      "\n"
+#define               vlli                      vector<long long int> 
+#define               it(var)                   var.begin(),var.end()
+#define               rit(var)                  var.rbegin(),var.rend()
+#define               mid(left,right)           (left+(right-left)/2)
+#define               fast_io                   ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define               _print(x)                 cerr << #x << " = " << x << endl;
 
-	// Method 3
-	// vector<int> left(n, 1), right(n, 1), ans(n);
-	// for(int i=1;i<n;i++){
-	// 	left[i]  = left[i-1]*arr[i-1];
-	// }
-	// for(int i=n-2;i>=0;--){
-	// 	right[i] = right[i+1]*arr[i+1];
-	// }
-	// for(int i=0;i<n;i++){
-	// 	ans[i] = left[i]*right[i];
-	// }
-	// return ans;
+template <typename T> T _gcd(T a, T b){if(a%b) return _gcd(b,a%b);return b;}
+template <typename T> T _lcm(T a, T b){return (a*(b/_gcd(a,b)));}
+template <typename T, typename... Args> auto sum(T a, Args... args) { return a + sum(args...); }
+template<typename T> bool comparator(pair<T,T>& a, pair<T,T>& b){return (a.second<b.second);}
+
+
+const long double pi = atan2(0, -1);
+string pi100 = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
+
+
+class Debug{
+   public:
+      void dbg(auto var) {cerr << var;}
+
+      // pair print
+      template <class T, class V> 
+      void dbg(pair <T, V> p) {cerr<< "pair = {"; dbg(p.first); cerr << ","; dbg(p.second); cerr << "}" << endl;}
+
+      // vector print
+      template <class T> 
+      void dbg(vector <T> v) {cerr << "array = { "; for (T i : v) {dbg(i); cerr << " ";} cerr << "}" << endl;}
+
+      // print set
+      template <class T> 
+      void dbg(set <T> v) {cerr << "set = [ "; for (T i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
+      
+      // print map
+      template <class T, class V> 
+      void dbg(map <T, V> v) {cerr << "map = [ \n"; for (auto i : v) {dbg(i); cerr << endl;} cerr << "]" << endl;}
+      
+      // print unordered_map
+      template <class T, class V> 
+      void dbg(unordered_map <T, V> v) {cerr << "ump = [ "; for (auto i : v) {dbg(i); cerr << " ";} cerr << "]" << endl;}
+      
+      // print multiset
+      template <class T> 
+      void dbg(multiset <T> v) {cerr << "multiset = [ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]" << endl;}
+};
+
+
+/****************************** Generate Testcases **************************/
+void genTestArr(auto &arr, auto pivot){ generate(arr.begin(), arr.end(), [&pivot]{ return (rand() % pivot); });}
+
+
+void file_input_output(){
+   ios_base::sync_with_stdio(0); 
+   cin.tie(0); 
+   cout.tie(0);
+   #ifndef ONLINE_JUDGE
+   freopen("input.txt", "r", stdin);
+   freopen("output.txt", "w", stdout);
+   freopen("error.txt", "w", stderr);
+   #endif
 }
 
-int main(){
-	int n;
-	cin>>n;
-	vector<int> arr(n);
-	for(auto &val : arr)	cin>>val;
-	vector<int> ans = skippedProduct(arr);
-	for(auto val : ans)	cout<<val<<” “;
-	cout<<endl;
-	return 0;
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SNIPPET ENDED $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+
+
+
+int main(int argc, char const *argv[]) {
+    clock_t begin = clock();
+    Debug d;
+    fast_io
+    // file_input_output();       // Taking file input and displaying output in output.txt
+    // Write your code here....
+    int n;
+    cin >> n;
+ 
+    vector <int> a(n);
+    for (auto &i : a) {
+        cin >> i;
+    }
+ 
+    vector <int> seg;
+ 
+    int flag = 0, cnt = 0;
+    for (int i = 0; i < n; i = i + 1) {
+        if (a[i] >= 1) {
+            cnt++;
+            flag = (flag || a[i] == 2);
+        }
+ 
+        if (a[i] == 0) {
+            if (cnt) {
+                if (flag) {
+                    seg.push_back(-cnt);
+                } else {
+                    seg.push_back(cnt);
+                }
+ 
+                cnt = 0;
+                flag = 0;
+            }
+ 
+            seg.push_back(0);
+        }
+    }
+ 
+    if (cnt) {
+        if (flag) {
+            seg.push_back(-cnt);
+        } else {
+            seg.push_back(cnt);
+        }
+    }
+ 
+    int ans = 0, was = 0;
+    for (int i = 0; i < seg.size(); i = i + 1) {
+        if (seg[i] == 0) {
+            if (was) {
+                ans++;
+            } else {
+                was = 1;
+            }
+        } else {
+            if (seg[i] > 0) {
+                if (was) {
+                    was = 0;
+                    ans++;
+                } else {
+                    ans++;
+                    i++;
+                }
+            } else {
+                ans++;
+                was = 0;
+                i++;
+            }
+        }
+    }
+ 
+    if (was) {
+        ans++;
+    }
+ 
+    cout << ans;
+    
+    
+    #ifndef ONLINE_JUDGE 
+    clock_t end = clock();
+    cout<<"\n\nExecuted In: "<<double(end - begin) / CLOCKS_PER_SEC*1000<<" ms"<<endl;
+    cout<<"Date : "<<__DATE__<< endl;
+    cout<<"Time : "<<__TIME__<< endl;
+    #endif 
+    return 0;
 }
+
+
+
+
+
+/************ INTPUT *****************/
+
+
+
+
+/************* OUTPUT *****************/
+
